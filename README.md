@@ -29,7 +29,7 @@ end
 ## Available options
 
 | Option | Description |
-|--|--|
+|--------|-------------|
 | :column | The column name to update. Default value is `:number` |
 | :prefix | The prefix for number |
 | :start  | The start value for number. Default is 1 |
