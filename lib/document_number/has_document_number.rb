@@ -16,7 +16,7 @@ module DocumentNumber
       # Options:
       # :column        the column name to update. Default value is `:number`.
       # :prefix        the prefix for number.
-      # :start         the start number for number
+      # :start         the start value for number
       def has_document_number(options = {})
         options.reverse_merge! column: :number, prefix: '', start: 0
 
