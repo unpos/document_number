@@ -7,11 +7,11 @@ require "document_number/version"
 Gem::Specification.new do |s|
   s.name        = "document_number"
   s.version     = DocumentNumber::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of DocumentNumber."
-  s.description = "TODO: Description of DocumentNumber."
+  s.authors     = ["Evgeny Pavlov"]
+  s.email       = ["pavlov@7pikes.com"]
+  # s.homepage    = "TODO"
+  s.summary     = "Automatic document number assignment"
+  s.description = "Document Number lets you automacally assign number sequences for your rails model"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
