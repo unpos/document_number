@@ -6,7 +6,7 @@ module DocumentNumber
     end
 
     module ClassMethods
-      # Declare this in your model to automatically document number assignment
+      # Declare this in your model to automatic document number assignment
       #
       # Usage:
       # class Invoice < ActiveRecord::Base

@@ -18,7 +18,7 @@ Document Number lets you automacally assign number sequences for your rails mode
 
     `bundle exec rake db:migrate`
 
-4. Declare `has_document_number` in your model to automatically document number assignment:
+4. Declare `has_document_number` in your model to automatic document number assignment:
 
 ```
 class Invoice < ActiveRecord::Base
