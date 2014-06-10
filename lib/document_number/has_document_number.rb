@@ -6,6 +6,13 @@ module DocumentNumber
     end
 
     module ClassMethods
+      # Declare this in your model to automatically document number assignment
+      #
+      # Usage:
+      # class Invoice < ActiveRecord::Base
+      #   has_document_number
+      # end
+      #
       # Options:
       # :column        the column name to update. Default value is `:number`.
       # :prefix        the prefix for number.
