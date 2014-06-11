@@ -8,7 +8,7 @@ module DocumentNumber
 
         number = document_number.number == 1 ? options[:start] : document_number.number
 
-        document_number.number += 1
+        document_number.number = number + 1
         document_number.save!
 
         number

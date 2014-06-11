@@ -10,4 +10,9 @@ describe PriceAdjustment do
     price_adjustment = PriceAdjustment.create
     expect(price_adjustment.document_number).to eq('500')
   end
+
+  it 'has sequence of numbers' do
+    expect(PriceAdjustment.create.document_number).to eq('500')
+    expect(PriceAdjustment.create.document_number).to eq('501')
+  end
 end
