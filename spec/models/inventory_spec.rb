@@ -7,13 +7,18 @@ describe Inventory do
   end
 
   it 'creates with own number' do
-    inventory = Inventory.create number: '5'
-    expect(inventory.number).to eq('5')
+    inventory = Inventory.create number: '500'
+    expect(inventory.number).to eq('500')
   end
 
   it 'does not change number on update' do
     inventory = Inventory.create number: '5'
     inventory.touch
     expect(inventory.number).to eq('5')
+  end
+
+  it 'creates sequence of numbers' do
+    expect(Inventory.create.number).to eq('1')
+    expect(Inventory.create.number).to eq('2')
   end
 end

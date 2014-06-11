@@ -27,6 +27,6 @@ Gem::Specification.new do |s|
   # s.add_development_dependency 'factory_girl_rails', '~> 4.0'
   s.add_development_dependency 'database_cleaner', '~> 1.3'
   s.add_development_dependency 'shoulda', '~> 3.5'
-  s.add_development_dependency 'pry', '~> 0.10'
+  s.add_development_dependency 'pry', '~> 0.9'
   s.add_development_dependency 'pry-debugger', '~> 0.2'
 end
