@@ -5,6 +5,6 @@ class CreateDocumentNumbers < ActiveRecord::Migration
       t.integer  :number, :null => false, :default => 1
       t.datetime :created_at
     end
-    add_index :document_numbers, :document
+    add_index :document_numbers, :document, :unique => true
   end
 end
