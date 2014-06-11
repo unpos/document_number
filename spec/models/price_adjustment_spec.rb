@@ -8,6 +8,6 @@ describe PriceAdjustment do
 
   it 'starts from predefined value' do
     price_adjustment = PriceAdjustment.create
-    expect(price_adjustment.document_number).to eq('501')
+    expect(price_adjustment.document_number).to eq('500')
   end
 end

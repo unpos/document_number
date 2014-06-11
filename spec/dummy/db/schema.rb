@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20140610093243) do
 
   create_table "document_numbers", force: true do |t|
     t.string   "document"
-    t.integer  "number",     null: false, default: 0
+    t.integer  "number",     null: false, default: 1
     t.datetime "created_at"
   end
 

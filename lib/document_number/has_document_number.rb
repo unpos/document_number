@@ -18,7 +18,7 @@ module DocumentNumber
       # :prefix        the prefix for number.
       # :start         the start value for number
       def has_document_number(options = {})
-        options.reverse_merge! column: :number, prefix: '', start: 0
+        options.reverse_merge! column: :number, prefix: '', start: 1
 
         method_name = "auto_increment_#{options[:column]}"
 

@@ -6,11 +6,12 @@ module DocumentNumber
       DocumentNumber.transaction do
         document_number = DocumentNumber.lock(true).find_or_initialize_by(document: object.class.to_s.underscore)
 
-        document_number.number = options[:start] if document_number.number == 0
+        number = options[:start] if document_number.number == 1
+
         document_number.number += 1
         document_number.save!
 
-        document_number.number
+        number
       end
     end
   end
