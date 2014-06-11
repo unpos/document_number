@@ -8,7 +8,7 @@ Document Number lets you automacally assign number sequences for your rails mode
 
 1. Add Document Number to your `Gemfile`
 
-    `gem 'document_number', '~> 0.0.1'`
+    `gem 'document_number', '~> 0.9.0'`
 
 2. Generate a migration which will add a `document_numbers` table to your database
 
