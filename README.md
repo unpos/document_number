@@ -26,10 +26,27 @@ class Invoice < ActiveRecord::Base
 end
 ```
 
-## Available options
+## Configuring Document Number
+
+Document Number has several configuration options, which you can configure, both globally and on a per-model basis:
+
+```ruby
+# config/initializers/document_number.rb
+DocumentNumber.prefix = 'server/'
+```
+
+Or alternatively:
+
+```ruby
+class Invoice < ActiveRecord::Base
+  has_document_number prefix: 'server/', start: 5000
+end
+```
+
+Available options:
 
 | Option | Description |
 |--------|-------------|
-| :column | The column name to update. Default value is `:number` |
-| :prefix | The prefix for number |
-| :start  | The start value for number. Default is 1 |
+| **column** | The column name to update. Default value is `:number` |
+| **prefix** | The prefix for number |
+| **start**  | The start value for number. Default is 1 |
