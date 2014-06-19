@@ -18,7 +18,7 @@ module DocumentNumber
       # :prefix        the prefix for number.
       # :start         the start value for number
       def has_document_number(options = {})
-        options.reverse_merge! column: :number, prefix: '', start: 1
+        options.reverse_merge! :column => :number, :start => 1
 
         method_name = "auto_increment_#{options[:column]}"
 
@@ -27,7 +27,8 @@ module DocumentNumber
         define_method method_name do
           return if send(options[:column]).present?
           number = Numerator.next_number(self, options)
-          write_attribute options[:column], "#{options[:prefix]}#{number}"
+          prefix = options[:prefix].present? ? options[:prefix] : ::DocumentNumber.configuration.prefix
+          write_attribute options[:column], "#{prefix}#{number}"
         end
       end
     end
