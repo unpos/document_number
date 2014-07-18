@@ -44,7 +44,9 @@ module DocumentNumber
       # Usage:
       # numbers = Invoice.get_numbers(100)
       def get_numbers(quantity)
-        Array.new(Integer(quantity)) { Numerator.next_number(self.to_s.underscore, document_number_options) }
+        Array.new(Integer(quantity)) do
+          "#{document_number_options[:prefix]}#{Numerator.next_number(to_s.underscore, document_number_options)}"
+        end
       rescue
         []
       end
