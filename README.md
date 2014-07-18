@@ -8,7 +8,7 @@ Document Number lets you automacally assign number sequences for your rails mode
 
 1. Add Document Number to your `Gemfile`
 
-    `gem 'document_number', '~> 0.9.4'`
+    `gem 'document_number', '~> 0.9.5'`
 
 2. Generate a migration which will add a `document_numbers` table to your database
 
@@ -50,3 +50,22 @@ Available options:
 | **column** | The column name to update. Default value is `:number` |
 | **prefix** | The prefix for number |
 | **start**  | The start value for number. Default is 1 |
+
+## Usage
+
+### Get number after initialization
+
+Document Number automacally assigns number when you saving your model. If you want to create number just after initialization use `:with_number` attribute:
+
+```ruby
+Invoice.new with_number: true
+```
+
+### Preserve numbers
+
+If you want to get a banch of numbers use model method `get_numbers`:
+
+```sh
+irb(main):001>Invoice.get_numbers(3)
+=> ['server/1', 'server/2', 'server/3']
+```

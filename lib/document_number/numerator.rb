@@ -2,13 +2,13 @@ require "active_record/base"
 
 module DocumentNumber
   class Numerator
-    def self.next_number(object, options)
-      DocumentNumber.transaction do
-        if ::Rails.version < "4.0"
-          # Rails 3 support
-          document_number = DocumentNumber.lock(true).find_or_initialize_by_document(object.class.to_s.underscore)
+    # Gets next number for document
+    def self.next_number(document, options)
+      DocumentNumber.transaction(requires_new: true) do
+        if ActiveRecord::VERSION::MAJOR < 4
+          document_number = DocumentNumber.lock(true).find_or_initialize_by_document(document)
         else
-          document_number = DocumentNumber.lock(true).find_or_initialize_by(:document => object.class.to_s.underscore)
+          document_number = DocumentNumber.lock(true).find_or_initialize_by(:document => document)
         end
 
         number = document_number.number == 1 ? options[:start] : document_number.number
