@@ -63,7 +63,7 @@ Invoice.new with_number: true
 
 ### Preserve numbers
 
-If you want to get a banch of numbers use model method `get_numbers`:
+If you want to get a bunch of numbers use model method `get_numbers`:
 
 ```sh
 irb(main):001>Invoice.get_numbers(3)
