@@ -28,7 +28,7 @@ module DocumentNumber
 
         method_name = "auto_increment_#{options[:column]}"
 
-        before_create method_name
+        before_validation method_name
         after_initialize method_name, :if => Proc.new { with_number == true }
 
         define_method method_name do

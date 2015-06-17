@@ -11,30 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610093243) do
+ActiveRecord::Schema.define(version: 20150617152432) do
 
-  create_table "document_numbers", force: true do |t|
+  create_table "document_numbers", force: :cascade do |t|
     t.string   "document"
-    t.integer  "number",     null: false, default: 1
+    t.integer  "number",     default: 1, null: false
     t.datetime "created_at"
   end
 
   add_index "document_numbers", ["document"], name: "index_document_numbers_on_document", unique: true
 
-  create_table "inventories", force: true do |t|
+  create_table "inventories", force: :cascade do |t|
     t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "invoices", force: true do |t|
+  create_table "invoices", force: :cascade do |t|
     t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "price_adjustments", force: true do |t|
+  create_table "price_adjustments", force: :cascade do |t|
     t.string   "document_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "supplier_complaints", force: :cascade do |t|
+    t.string   "number"
+    t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
