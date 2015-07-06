@@ -1,0 +1,12 @@
+image: bradrydzewski/ruby:2.1.1
+env:
+  - RAILS_ENV=test
+script:
+  - mkdir -p /tmp/bundle
+  - sudo chown -R ubuntu:ubuntu /tmp/bundle
+  - bundle install --path /tmp/bundle
+  - bundle exec rake db:create
+  - bundle exec rake db:schema:load
+  - bundle exec rspec
+cache:
+  - /tmp/bundle
