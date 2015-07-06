@@ -1,5 +1,7 @@
 # Document Number
 
+[![Build Status](http://ci.7pikes.com/api/badge/github.com/7Pikes/document_number/status.svg?branch=master)](http://ci.7pikes.com/github.com/7Pikes/document_number)
+
 Document Number lets you automacally assign number sequences for your rails models.
 
 ## Installation
@@ -68,4 +70,14 @@ If you want to get a bunch of numbers use model method `get_numbers`:
 ```sh
 irb(main):001>Invoice.get_numbers(3)
 => ['server/1', 'server/2', 'server/3']
+```
+
+## Contribute
+
+Feel free to add any new features or fix bugs by creating a new pull request to this repository
+
+### Run tests
+
+```sh
+bundle exec rspec
 ```
