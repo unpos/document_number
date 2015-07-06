@@ -101,4 +101,43 @@ describe SupplierComplaint do
       expect(SupplierComplaint.new.number).to be_nil
     end
   end
+
+  context '#update_document_number' do
+    before(:each) do
+      SupplierComplaint.has_document_number(prefix: nil, start: 500)
+      SupplierComplaint.create!(text: 'complaint')
+    end
+
+    context 'new number is greater or equal then old' do
+      it 'updates number' do
+        result = SupplierComplaint.update_document_number(505)
+        document_row = DocumentNumber::DocumentNumber.find_by_document('supplier_complaint')
+        expect(result).to be true
+        expect(document_row.number).to eq 505
+      end
+
+      it 'updates number if new number equals to old' do
+        result = SupplierComplaint.update_document_number(501)
+        document_row = DocumentNumber::DocumentNumber.find_by_document('supplier_complaint')
+        expect(result).to be true
+        expect(document_row.number).to eq 501
+      end
+    end
+
+    context 'new number is less then old' do
+      it 'updates number if check = false' do
+        result = SupplierComplaint.update_document_number(400, false)
+        document_row = DocumentNumber::DocumentNumber.find_by_document('supplier_complaint')
+        expect(result).to be true
+        expect(document_row.number).to eq 400
+      end
+
+      it 'not updating number' do
+        result = SupplierComplaint.update_document_number(400)
+        document_row = DocumentNumber::DocumentNumber.find_by_document('supplier_complaint')
+        expect(result).to be false
+        expect(document_row.number).to eq 501
+      end
+    end
+  end
 end

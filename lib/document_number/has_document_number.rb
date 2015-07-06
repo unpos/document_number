@@ -50,6 +50,13 @@ module DocumentNumber
       rescue
         []
       end
+
+      def update_document_number(number, check = true)
+        document = self.to_s.underscore
+        doc_in_db = DocumentNumber.where(:document => document).last
+        return false if check && doc_in_db && doc_in_db.number.to_i > number.to_i
+        doc_in_db.update_attribute(:number, number)
+      end
     end
   end
 end
