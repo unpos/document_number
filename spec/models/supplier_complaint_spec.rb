@@ -2,10 +2,8 @@ require 'spec_helper'
 
 describe SupplierComplaint do
   context 'without prefix' do
-    before(:each) do
+    before do
       SupplierComplaint.has_document_number(prefix: nil, start: 500)
-      # document_row = DocumentNumber::DocumentNumber.find_by_document('supplier_complaint')
-      # document_row.update_attributes(number: 1) if document_row
     end
 
     it 'uses default column' do
@@ -25,30 +23,34 @@ describe SupplierComplaint do
       expect(supplier_complaint2.number).to eq('501')
     end
 
-    it 'if validation fails next record gets correct number' do
-      supplier_complaint1 = SupplierComplaint.create(text: 'complaint1')
-      supplier_complaint2 = SupplierComplaint.create(text: '')
-      supplier_complaint3 = SupplierComplaint.create(text: 'complaint3')
-      expect(supplier_complaint1.number).to eq('500')
-      expect(supplier_complaint2).to be_invalid
-      expect(supplier_complaint3.number).to eq('501')
-    end
+    context 'validation fails' do
+      it 'next record gets correct number' do
+        supplier_complaint1 = SupplierComplaint.create(text: 'complaint1')
+        supplier_complaint2 = SupplierComplaint.create(text: '')
+        supplier_complaint3 = SupplierComplaint.create(text: 'complaint3')
+        expect(supplier_complaint1.number).to eq('500')
+        expect(supplier_complaint2).to be_invalid
+        expect(supplier_complaint3.number).to eq('501')
+      end
 
-    it 'if validation fails next records g correct number' do
-      supplier_complaint1 = SupplierComplaint.create(text: '')
-      supplier_complaint2 = SupplierComplaint.create(text: 'complaint2')
-      supplier_complaint3 = SupplierComplaint.create(text: 'complaint3')
-      expect(supplier_complaint1).to be_invalid
-      expect(supplier_complaint2.number).to eq('500')
-      expect(supplier_complaint3.number).to eq('501')
+      it 'next records get correct number' do
+        supplier_complaint1 = SupplierComplaint.create(text: '')
+        supplier_complaint2 = SupplierComplaint.create(text: 'complaint2')
+        supplier_complaint3 = SupplierComplaint.create(text: 'complaint3')
+        expect(supplier_complaint1).to be_invalid
+        expect(supplier_complaint2.number).to eq('500')
+        expect(supplier_complaint3.number).to eq('501')
+      end
     end
 
     it 'gets array of numbers' do
       expect(SupplierComplaint.get_numbers(3)).to eq(%w(500 501 502))
     end
 
-    it 'assigns number after initialization if has with_number' do
-      expect(SupplierComplaint.new(with_number: true).number).to eq('500')
+    context 'has with_number' do
+      it 'assigns number after initialization' do
+        expect(SupplierComplaint.new(with_number: true).number).to eq('500')
+      end
     end
 
     it 'does not assign number after initialization' do
@@ -57,10 +59,8 @@ describe SupplierComplaint do
   end
 
   context 'with prefix' do
-    before(:each) do
+    before do
       SupplierComplaint.has_document_number(prefix: 'prefix/', start: 500)
-      # document_row = DocumentNumber::DocumentNumber.find_by_document('supplier_complaint')
-      # document_row.update_attributes(number: 1) if document_row
     end
 
     it 'uses default column' do
@@ -80,21 +80,25 @@ describe SupplierComplaint do
       expect(supplier_complaint2.number).to eq('prefix/501')
     end
 
-    it 'if validation fails next record gets correct number' do
-      supplier_complaint1 = SupplierComplaint.create(text: 'complaint1')
-      supplier_complaint2 = SupplierComplaint.create(text: '')
-      supplier_complaint3 = SupplierComplaint.create(text: 'complaint3')
-      expect(supplier_complaint1.number).to eq('prefix/500')
-      expect(supplier_complaint2).to be_invalid
-      expect(supplier_complaint3.number).to eq('prefix/501')
+    context 'validation fails' do
+      it 'next record gets correct number' do
+        supplier_complaint1 = SupplierComplaint.create(text: 'complaint1')
+        supplier_complaint2 = SupplierComplaint.create(text: '')
+        supplier_complaint3 = SupplierComplaint.create(text: 'complaint3')
+        expect(supplier_complaint1.number).to eq('prefix/500')
+        expect(supplier_complaint2).to be_invalid
+        expect(supplier_complaint3.number).to eq('prefix/501')
+      end
     end
 
     it 'gets array of numbers' do
       expect(SupplierComplaint.get_numbers(3)).to eq(%w(prefix/500 prefix/501 prefix/502))
     end
 
-    it 'assigns number after initialization if has with_number' do
-      expect(SupplierComplaint.new(with_number: true).number).to eq('prefix/500')
+    context 'has with_number' do
+      it 'assigns number after initialization' do
+        expect(SupplierComplaint.new(with_number: true).number).to eq('prefix/500')
+      end
     end
 
     it 'does not assign number after initialization' do
@@ -103,7 +107,7 @@ describe SupplierComplaint do
   end
 
   context '#update_document_number' do
-    before(:each) do
+    before do
       SupplierComplaint.has_document_number(prefix: nil, start: 500)
       SupplierComplaint.create!(text: 'complaint')
     end
@@ -125,11 +129,13 @@ describe SupplierComplaint do
     end
 
     context 'new number is less then old' do
-      it 'updates number if check = false' do
-        result = SupplierComplaint.update_document_number(400, false)
-        document_row = DocumentNumber::DocumentNumber.find_by_document('supplier_complaint')
-        expect(result).to be true
-        expect(document_row.number).to eq 400
+      context 'check = false' do
+        it 'updates number' do
+          result = SupplierComplaint.update_document_number(400, false)
+          document_row = DocumentNumber::DocumentNumber.find_by_document('supplier_complaint')
+          expect(result).to be true
+          expect(document_row.number).to eq 400
+        end
       end
 
       it 'not updating number' do
