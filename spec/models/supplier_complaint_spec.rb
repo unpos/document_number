@@ -129,15 +129,6 @@ describe SupplierComplaint do
     end
 
     context 'new number is less then old' do
-      context 'check = false' do
-        it 'updates number' do
-          result = SupplierComplaint.update_document_number(400, false)
-          document_row = DocumentNumber::DocumentNumber.find_by_document('supplier_complaint')
-          expect(result).to be true
-          expect(document_row.number).to eq 400
-        end
-      end
-
       it 'not updating number' do
         result = SupplierComplaint.update_document_number(400)
         document_row = DocumentNumber::DocumentNumber.find_by_document('supplier_complaint')
