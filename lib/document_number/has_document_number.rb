@@ -28,7 +28,7 @@ module DocumentNumber
 
         method_name = "auto_increment_#{options[:column]}"
 
-        before_create method_name
+        before_validation method_name
         after_initialize method_name, :if => Proc.new { with_number == true }
 
         define_method method_name do
@@ -49,6 +49,13 @@ module DocumentNumber
         end
       rescue
         []
+      end
+
+      def update_document_number(number)
+        document = self.to_s.underscore
+        doc_in_db = DocumentNumber.where(:document => document).last
+        return false if doc_in_db && doc_in_db.number.to_i > number.to_i
+        doc_in_db.update_attribute(:number, number)
       end
     end
   end
