@@ -4,4 +4,4 @@ database:
 
 test:
   override:
-    - bundle exec rspec --require spec_helper spec --format progress
+    - bundle exec rspec
