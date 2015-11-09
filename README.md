@@ -1,6 +1,6 @@
 # Document Number
 
-[![Build Status](http://ci.7pikes.com/api/badge/github.com/7Pikes/document_number/status.svg?branch=master)](http://ci.7pikes.com/github.com/7Pikes/document_number)
+[![Circle CI](https://circleci.com/gh/7Pikes/document_number.svg?style=svg)](https://circleci.com/gh/7Pikes/document_number)
 
 Document Number lets you automacally assign number sequences for your rails models.
 
