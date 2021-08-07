@@ -1,7 +1,0 @@
-database:
-  override:
-    - bundle exec rake db:create db:schema:load
-
-test:
-  override:
-    - bundle exec rspec

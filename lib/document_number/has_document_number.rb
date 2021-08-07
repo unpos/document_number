@@ -28,8 +28,8 @@ module DocumentNumber
 
         method_name = "auto_increment_#{options[:column]}"
 
-        before_validation method_name
-        after_initialize method_name, :if => Proc.new { with_number == true }
+        before_validation { send method_name }
+        after_initialize { send method_name if with_number }
 
         define_method method_name do
           return if send(options[:column]).present?

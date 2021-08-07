@@ -1,16 +1,14 @@
 # Document Number
 
-[![Circle CI](https://circleci.com/gh/7Pikes/document_number.svg?style=svg)](https://circleci.com/gh/7Pikes/document_number)
-
 Document Number lets you automacally assign number sequences for your rails models.
 
 ## Installation
 
-### Rails 3 & 4
+### Rails >= 4
 
 1. Add Document Number to your `Gemfile`
 
-    `gem 'document_number', '~> 0.10.0'`
+    `gem 'document_number', github: 'unpos/document_number'`
 
 2. Generate a migration which will add a `document_numbers` table to your database
 
